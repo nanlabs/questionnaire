@@ -1,10 +1,15 @@
 import React from 'react'
+import { questions } from './questions'
 
-import { ExampleComponent } from 'questionnaire'
+import { Questionnaire, Question } from 'questionnaire'
 import 'questionnaire/dist/index.css'
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
+  return (
+    <Questionnaire questions={questions}>
+      <Question />
+    </Questionnaire>
+  )
 }
 
 export default App
