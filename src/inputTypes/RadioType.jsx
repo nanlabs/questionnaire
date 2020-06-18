@@ -1,14 +1,14 @@
 import React from 'react'
 import { useStore } from '../store/Store'
-import { setNextQuestion } from '../helpers/questionsHelpers'
+import { setNextQuestions } from '../helpers/questionsHelpers'
 
-const RadioTypeQuestion = () => {
-  const [{ currentQuestion, questions }, dispatch] = useStore()
+const RadioTypeQuestion = ({ question, style }) => {
+  const [{ questions }, dispatch] = useStore()
 
   return (
-    <div className=''>
-      <h3>{currentQuestion.label}</h3>
-      {currentQuestion.options.map((option) => (
+    <div style={style}>
+      <h3>{question.label}</h3>
+      {question.options.map((option) => (
         <span key={option.label}>
           <label htmlFor={option.label}>{option.label}</label>
           <input
@@ -16,7 +16,7 @@ const RadioTypeQuestion = () => {
             name={option.label}
             value={option.label}
             onChange={() =>
-              setNextQuestion(option.nextQuestion, dispatch, questions)
+              setNextQuestions(option.nextQuestion, dispatch, questions)
             }
           />
         </span>

@@ -1,31 +1,23 @@
 import React from 'react'
 import { useStore } from '../store/Store'
 import QuestionType from '../helpers/QuestionType'
-import { setCurrentQuestion } from '../helpers/questionsHelpers'
 
-const Question = () => {
-  const [
-    { currentQuestion, nextQuestion, prevQuestion, questions },
-    dispatch
-  ] = useStore()
-  console.log(currentQuestion)
+const Question = ({ styles, children }) => {
+  const [{ currentQuestions }] = useStore()
+  const renderQuestion = () => {
+    return (
+      currentQuestions &&
+      currentQuestions.length &&
+      currentQuestions.map((question) => (
+        <QuestionType question={question} style={styles} />
+      ))
+    )
+  }
+
   return (
-    <div className='question-container'>
-      <QuestionType question={currentQuestion} />
-      <span>
-        <button
-          className='button'
-          onClick={() => setCurrentQuestion(prevQuestion, dispatch, questions)}
-        >
-          Back
-        </button>
-        <button
-          className='button'
-          onClick={() => setCurrentQuestion(nextQuestion, dispatch, questions)}
-        >
-          Next
-        </button>
-      </span>
+    <div>
+      {renderQuestion()}
+      {children}
     </div>
   )
 }
