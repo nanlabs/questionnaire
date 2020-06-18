@@ -1,21 +1,21 @@
 import React, { useEffect } from 'react'
-import './Home.css'
 import { useStore } from '../store/Store'
+import { setCurrentQuestions } from '../helpers/questionsHelpers'
 
-const Questions = ({ questionnaire, sectiones, children }) => {
-  const [{ currentQuestion, questions, sections }, dispatch] = useStore()
+const Questions = ({ questionnaire, argSections, children }) => {
+  const [{ questions, sections }, dispatch] = useStore()
 
-  console.log(questionnaire)
   useEffect(() => {
-    if ((!sections && sectiones) || sectiones !== sections) {
-      dispatch({ type: 'setSections', payload: sectiones })
+    console.log('here')
+    if ((!sections && argSections) || argSections !== sections) {
+      dispatch({ type: 'setSections', payload: argSections })
     }
-  }, [sections, dispatch, sectiones])
+  }, [sections, dispatch, argSections])
 
   useEffect(() => {
     if (!questions || questions !== questionnaire) {
       dispatch({ type: 'setQuestions', payload: questionnaire })
-      dispatch({ type: 'setCurrentQuestion', payload: questionnaire[0] })
+      setCurrentQuestions(questionnaire[0], dispatch, questionnaire)
     }
   }, [questionnaire, questions, dispatch])
 

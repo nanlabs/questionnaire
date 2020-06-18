@@ -14,10 +14,11 @@ const QuestionTypes = {
   select: Select
 }
 
-const Question = ({ question }) => {
+const Question = ({ question, style }) => {
+  console.log(style)
   if (!question || !QuestionTypes[question.type]) return null
   const TypeComponent = QuestionTypes[question.type]
-  return <TypeComponent question={question} />
+  return <TypeComponent question={question} style={style} />
 }
 
 Question.defaultProps = {

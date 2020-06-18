@@ -1,11 +1,11 @@
 import React from 'react'
 import { useStore } from '../store/Store'
 
-const TextAreaType = () => {
+const TextAreaType = ({ style }) => {
   const [{ currentQuestion }] = useStore()
 
   return (
-    <div>
+    <div style={style}>
       <h3>{currentQuestion.label}</h3>
       <textarea rows='5' cols='50' />
     </div>

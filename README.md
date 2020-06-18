@@ -1,4 +1,4 @@
-# questionnaire
+<!-- # questionnaire
 
 > Made with create-react-library
 
@@ -27,4 +27,13 @@ class Example extends Component {
 
 ## License
 
-MIT © [Kupuka-D](https://github.com/Kupuka-D)
+MIT © [Kupuka-D](https://github.com/Kupuka-D) -->
+
+## Install & run
+
+```bash
+npm install
+npm start // for the library
+cd example
+npm start // for the app that use the library
+```

@@ -1,16 +1,18 @@
-export const setNextQuestion = (nextQuestionId, dispatch, questions) => {
+export const setNextQuestions = (nextQuestionId, dispatch, questions) => {
   const nextQuestion = questions.find(
     (question) => question.id === nextQuestionId
-  );
-  nextQuestion && dispatch({ type: "setNextQuestion", payload: nextQuestion });
-};
+  )
+  nextQuestion && dispatch({ type: 'setNextQuestions', payload: nextQuestion })
+}
 
-export const setCurrentQuestion = (question, dispatch, questions) => {
+export const setCurrentQuestions = (question, dispatch, questions) => {
+  console.log(question)
   if (question) {
-    dispatch({ type: "setCurrentQuestion", payload: question });
-    const prevQuestion = questions.find((q) => q.id === question.prevQuestion);
-    dispatch({ type: "setPreviousQuestion", payload: prevQuestion });
-    const nextQuestion = questions.find((q) => q.id === question.nextQuestion);
-    dispatch({ type: "setNextQuestion", payload: nextQuestion });
+    const currentQuestions = questions.filter((q) => q.id === question.id)
+    dispatch({ type: 'setCurrentQuestions', payload: currentQuestions })
+    const prevQuestion = questions.find((q) => q.id === question.prevQuestion)
+    dispatch({ type: 'setPreviousQuestions', payload: prevQuestion })
+    const nextQuestion = questions.find((q) => q.id === question.nextQuestion)
+    dispatch({ type: 'setNextQuestions', payload: nextQuestion })
   }
-};
+}

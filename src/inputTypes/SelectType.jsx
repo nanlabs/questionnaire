@@ -1,19 +1,19 @@
 import React from 'react'
 import { useStore } from '../store/Store'
-import { setNextQuestion } from '../helpers/questionsHelpers'
+import { setNextQuestions } from '../helpers/questionsHelpers'
 
-const SelectType = () => {
+const SelectType = ({ style }) => {
   const [{ currentQuestion, questions }, dispatch] = useStore()
 
   const onChange = (event) => {
     const option = currentQuestion.options.find(
       (option) => option.label === event.target.value
     )
-    setNextQuestion(option.nextQuestion, dispatch, questions)
+    setNextQuestions(option.nextQuestion, dispatch, questions)
   }
 
   return (
-    <div className='select-container'>
+    <div style={style}>
       <h3>{currentQuestion.label}</h3>
       <select name={'options'} onChange={onChange}>
         {currentQuestion.options.map((option) => (
@@ -22,7 +22,7 @@ const SelectType = () => {
             value={option.label}
             label={option.label}
             onSelect={() =>
-              setNextQuestion(option.nextQuestion, dispatch, questions)
+              setNextQuestions(option.nextQuestion, dispatch, questions)
             }
           />
         ))}
