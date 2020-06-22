@@ -13,12 +13,21 @@ const persist = (reducer) => {
   }
 }
 
-export const Store = ({ questionnaire, sections, children }) => {
+export const Store = ({
+  questionnaire,
+  sections,
+  children,
+  questionsHandler
+}) => {
   const cache = localStorage.getItem('store')
   const initialState = cache ? JSON.parse(cache) : {}
   return (
     <StateContext.Provider value={useReducer(persist(reducer), initialState)}>
-      <Questions questionnaire={questionnaire} argSections={sections}>
+      <Questions
+        questionnaire={questionnaire}
+        argSections={sections}
+        questionsHandler={questionsHandler}
+      >
         {children}
       </Questions>
     </StateContext.Provider>

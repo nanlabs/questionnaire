@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react'
 import { useStore } from '../store/Store'
-import { setCurrentQuestions } from '../helpers/questionsHelpers'
 
-const Questions = ({ questionnaire, argSections, children }) => {
+const Questions = ({
+  questionnaire,
+  argSections,
+  children,
+  questionsHandler
+}) => {
   const [{ questions, sections }, dispatch] = useStore()
 
   useEffect(() => {
-    console.log('here')
+    dispatch({ type: 'setQuestionnaire', payload: questionsHandler })
+  }, [questionsHandler])
+
+  useEffect(() => {
     if ((!sections && argSections) || argSections !== sections) {
       dispatch({ type: 'setSections', payload: argSections })
     }
@@ -15,11 +22,15 @@ const Questions = ({ questionnaire, argSections, children }) => {
   useEffect(() => {
     if (!questions || questions !== questionnaire) {
       dispatch({ type: 'setQuestions', payload: questionnaire })
-      setCurrentQuestions(questionnaire[0], dispatch, questionnaire)
+      questionsHandler.setCurrentQuestions(
+        questionnaire[0],
+        dispatch,
+        questionnaire
+      )
     }
   }, [questionnaire, questions, dispatch])
 
-  return <div className='home-container'>{children}</div>
+  return <span>{children}</span>
 }
 
 export default Questions

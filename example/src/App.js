@@ -1,30 +1,24 @@
 import React from 'react'
 import { questions } from './questions'
 import { sections } from './sections'
+import questionsHandler from './Interface'
+import './index.css'
 
 import { Questionnaire, Question, Nav, Next, Back } from 'questionnaire'
-import {
-  navStyles,
-  QuestionnaireContainer,
-  QuestionContainer,
-  buttonStyles
-} from './styles'
 
 const App = () => {
   return (
     <Questionnaire
       questions={questions}
       sections={sections}
-      styles={QuestionnaireContainer}
+      className='questionnaire-container'
+      questionsHandler={questionsHandler}
     >
-      <Nav style={navStyles} />
-      <Question styles={QuestionContainer}>
-        <span style={{ paddingLeft: '2em' }}>
-          <Back
-            text='Back'
-            style={Object.assign(buttonStyles, { marginRight: '1em' })}
-          />
-          <Next text='Next' style={buttonStyles} />
+      <Nav className={'nav'} />
+      <Question className='question-container'>
+        <span>
+          <Back text='Back' className='buttons' />
+          <Next text='Next' className='buttons' />
         </span>
       </Question>
     </Questionnaire>
