@@ -1,14 +1,15 @@
 import React from 'react'
 import { useStore } from '../store/Store'
-import { setCurrentQuestions } from '../helpers/questionsHelpers'
 import { Button } from '../common/Button'
 
-export const PrevQuestion = ({ text, style }) => {
-  const [{ prevQuestions, questions }, dispatch] = useStore()
+export const PrevQuestion = ({ text, className }) => {
+  const [{ prevQuestions, questions, Questionnaire }, dispatch] = useStore()
   return (
     <Button
-      style={style}
-      onClick={() => setCurrentQuestions(prevQuestions, dispatch, questions)}
+      className={className}
+      onClick={() =>
+        Questionnaire.setCurrentQuestions(prevQuestions, dispatch, questions)
+      }
       text={text}
     />
   )

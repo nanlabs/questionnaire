@@ -1,21 +1,19 @@
 import React from 'react'
 import { useStore } from '../store/Store'
-import QuestionType from '../helpers/QuestionType'
+import QuestionType from '../common/QuestionType'
 
-const Question = ({ styles, children }) => {
+const Question = ({ className, children }) => {
   const [{ currentQuestions }] = useStore()
   const renderQuestion = () => {
     return (
       currentQuestions &&
       currentQuestions.length &&
-      currentQuestions.map((question) => (
-        <QuestionType question={question} style={styles} />
-      ))
+      currentQuestions.map((question) => <QuestionType question={question} />)
     )
   }
 
   return (
-    <div>
+    <div className={className}>
       {renderQuestion()}
       {children}
     </div>

@@ -4,32 +4,43 @@ import SingleQuestion from './components/Question'
 import NavBar from './components/Nav'
 import { NextQuestion } from './components/NextQuestion'
 import { PrevQuestion } from './components/PrevQuestion'
+import SingleSection from './components/Section'
 
-export const Next = ({ text, style }) => {
-  return <NextQuestion text={text} style={style} />
+export const Next = ({ text, className }) => {
+  return <NextQuestion text={text} className={className} />
 }
 
-export const Back = ({ text, style }) => {
-  return <PrevQuestion text={text} style={style} />
+export const Back = ({ text, style, className }) => {
+  return <PrevQuestion text={text} style={style} className={className} />
 }
 
-export const Question = ({ styles, children }) => {
-  return <SingleQuestion styles={styles}>{children}</SingleQuestion>
+export const Question = ({ className, children }) => {
+  return <SingleQuestion className={className}>{children}</SingleQuestion>
 }
 export const Questionnaire = ({
   questions,
   question,
   sections,
   children,
-  styles
+  questionsHandler,
+  className
 }) => {
   return (
-    <Store questionnaire={questions} question={question} sections={sections}>
-      <div style={styles}>{children}</div>
+    <Store
+      questionnaire={questions}
+      question={question}
+      sections={sections}
+      questionsHandler={questionsHandler}
+    >
+      <div className={className}>{children}</div>
     </Store>
   )
 }
 
-export const Nav = ({ style }) => {
-  return <NavBar style={style} />
+export const Nav = ({ className }) => {
+  return <NavBar className={className} />
+}
+
+export const Section = ({ className }) => {
+  return <SingleSection className={className} />
 }

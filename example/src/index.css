@@ -12,3 +12,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.buttons {
+  padding: 1em 2em 1em 2em;
+  background: blue;
+  border-radius: 5px;
+  border: 1px;
+  color: white;
+  margin: 2em 2em 0 0;
+}
+
+.nav {
+  background: blue;
+  color: white;
+  padding: 2em;
+  border-radius: 0 0 5px 0;
+}
+
+.questionnaire-container {
+  font-family: roboto;
+  display: flex;
+}
+
+.question-container {
+  margin-left: 2em;
+  padding: 2em;
+}

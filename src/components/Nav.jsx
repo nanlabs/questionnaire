@@ -2,10 +2,12 @@ import React from 'react'
 import Section from './Section'
 import { useStore } from '../store/Store'
 
-const Nav = ({ style }) => {
+const Nav = ({ className, children }) => {
   const [{ sections }] = useStore()
+
   return (
-    <div style={style}>
+    <div className={className}>
+      {children}
       {sections &&
         sections.map((section) => (
           <Section

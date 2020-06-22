@@ -1,12 +1,11 @@
 import React from 'react'
-import { useStore } from '../store/Store'
-import { setNextQuestions } from '../helpers/questionsHelpers'
+import { useStore } from '../../store/Store'
 
-const Checkbox = ({ question, style }) => {
-  const [{ questions }, dispatch] = useStore()
+const Checkbox = ({ question, className }) => {
+  const [{ questions, Questionnaire }, dispatch] = useStore()
 
   return (
-    <div style={style}>
+    <div className={className}>
       <h3>{question.label}</h3>
       {question.options.map((option) => (
         <span key={option.label}>
@@ -16,7 +15,11 @@ const Checkbox = ({ question, style }) => {
             name={option.label}
             type={question.type}
             onChange={() =>
-              setNextQuestions(option.nextQuestion, dispatch, questions)
+              Questionnaire.setNextQuestions(
+                option.nextQuestion,
+                dispatch,
+                questions
+              )
             }
           />
         </span>
