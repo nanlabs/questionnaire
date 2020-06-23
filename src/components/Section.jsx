@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStore } from '../store/Store'
+import { setCurrentQuestion } from '../utils/helpers'
 
 const Section = ({ label, id }) => {
   const [{ currentQuestions, questions, Questionnaire }, dispatch] = useStore()
@@ -17,7 +18,7 @@ const Section = ({ label, id }) => {
             key={question.id + question.label}
             style={isActive(question)}
             onClick={() =>
-              Questionnaire.setCurrentQuestions(question, dispatch, questions)
+              setCurrentQuestion(Questionnaire, question, questions, dispatch)
             }
           >
             {question.label}

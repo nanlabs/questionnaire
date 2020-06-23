@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStore } from '../store/Store'
 import { Button } from '../common/Button'
+import { setCurrentQuestion } from '../utils/helpers'
 
 export const PrevQuestion = ({ text, className }) => {
   const [{ prevQuestions, questions, Questionnaire }, dispatch] = useStore()
@@ -8,7 +9,7 @@ export const PrevQuestion = ({ text, className }) => {
     <Button
       className={className}
       onClick={() =>
-        Questionnaire.setCurrentQuestions(prevQuestions, dispatch, questions)
+        setCurrentQuestion(Questionnaire, prevQuestions, questions, dispatch)
       }
       text={text}
     />

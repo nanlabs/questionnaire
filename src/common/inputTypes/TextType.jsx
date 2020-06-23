@@ -1,12 +1,9 @@
 import React from 'react'
-import { useStore } from '../../store/Store'
 
-const TextType = ({ className }) => {
-  const [{ currentQuestion }] = useStore()
-
+const TextType = ({ className, question }) => {
   return (
     <div className={className}>
-      <h3>{currentQuestion.label}</h3>
+      <h3>{question.label}</h3>
       <input type='text' />
     </div>
   )

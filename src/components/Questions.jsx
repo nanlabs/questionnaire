@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useStore } from '../store/Store'
+import { setCurrentQuestion } from '../utils/helpers'
 
 const Questions = ({
   questionnaire,
@@ -9,6 +10,7 @@ const Questions = ({
 }) => {
   const [{ questions, sections }, dispatch] = useStore()
 
+  // dispatch({ type: 'clear' })
   useEffect(() => {
     dispatch({ type: 'setQuestionnaire', payload: questionsHandler })
   }, [questionsHandler])
@@ -22,13 +24,14 @@ const Questions = ({
   useEffect(() => {
     if (!questions || questions !== questionnaire) {
       dispatch({ type: 'setQuestions', payload: questionnaire })
-      questionsHandler.setCurrentQuestions(
+      setCurrentQuestion(
+        questionsHandler,
         questionnaire[0],
-        dispatch,
-        questionnaire
+        questionnaire,
+        dispatch
       )
     }
-  }, [questionnaire, questions, dispatch])
+  }, [questionnaire, questions])
 
   return <span>{children}</span>
 }
