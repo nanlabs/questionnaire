@@ -8,7 +8,12 @@ const Question = ({ className, children }) => {
     return (
       currentQuestions &&
       currentQuestions.length &&
-      currentQuestions.map((question) => <QuestionType question={question} />)
+      currentQuestions.map((question) => (
+        <QuestionType
+          question={question}
+          key={`${question.id}${question.label}`}
+        />
+      ))
     )
   }
 

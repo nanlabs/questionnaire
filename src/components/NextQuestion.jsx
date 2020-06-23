@@ -1,14 +1,16 @@
 import React from 'react'
 import { useStore } from '../store/Store'
 import { Button } from '../common/Button'
+import { setCurrentQuestion } from '../utils/helpers'
 
 export const NextQuestion = ({ text, className }) => {
-  const [{ nextQuestions, questions, Questionnaire }, dispatch] = useStore()
+  const [{ questions, nextQuestions, Questionnaire }, dispatch] = useStore()
+  console.log(nextQuestions)
   return (
     <Button
       className={className}
       onClick={() =>
-        Questionnaire.setCurrentQuestions(nextQuestions, dispatch, questions)
+        setCurrentQuestion(Questionnaire, nextQuestions, questions, dispatch)
       }
       text={text}
     />

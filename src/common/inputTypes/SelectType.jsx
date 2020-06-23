@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStore } from '../../store/Store'
+import { setNextQuestion } from '../../utils/helpers'
 
 const SelectType = ({ className }) => {
   const [{ currentQuestion, questions, Questionnaire }, dispatch] = useStore()
@@ -20,13 +21,7 @@ const SelectType = ({ className }) => {
             key={option.label}
             value={option.label}
             label={option.label}
-            onSelect={() =>
-              Questionnaire.setNextQuestions(
-                option.nextQuestion,
-                dispatch,
-                questions
-              )
-            }
+            onSelect={() => setNextQuestion(Questionnaire, questions, dispatch)}
           />
         ))}
       </select>

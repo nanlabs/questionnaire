@@ -2,7 +2,7 @@ import React from 'react'
 import { questions } from './questions'
 import { sections } from './sections'
 import questionsHandler from './Interface'
-import './index.css'
+import './index.scss'
 
 import { Questionnaire, Question, Nav, Next, Back } from 'questionnaire'
 
