@@ -15,7 +15,9 @@ const RadioTypeQuestion = ({ question, className }) => {
             type='radio'
             name={option.label}
             value={option.label}
-            onChange={() => setNextQuestion(Questionnaire, questions, dispatch)}
+            onChange={() =>
+              setNextQuestion(Questionnaire, option, questions, dispatch)
+            }
           />
         </span>
       ))}

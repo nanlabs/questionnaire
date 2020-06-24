@@ -9,7 +9,7 @@ export const setCurrentQuestion = (
   }
 }
 
-export const setNextQuestion = (Questionnaire, questions, dispatch) => {
+export const setNextQuestion = (Questionnaire, option, questions, dispatch) => {
   const nextQuestion = Questionnaire.getNextQuestions(
     option.nextQuestion,
     questions
