@@ -15,7 +15,9 @@ const Checkbox = ({ question, className }) => {
           <input
             name={option.label}
             type={question.type}
-            onChange={() => setNextQuestion(Questionnaire, questions, dispatch)}
+            onChange={() =>
+              setNextQuestion(Questionnaire, option, questions, dispatch)
+            }
           />
         </span>
       ))}

@@ -21,7 +21,9 @@ const SelectType = ({ className }) => {
             key={option.label}
             value={option.label}
             label={option.label}
-            onSelect={() => setNextQuestion(Questionnaire, questions, dispatch)}
+            onSelect={() =>
+              setNextQuestion(Questionnaire, option, questions, dispatch)
+            }
           />
         ))}
       </select>
