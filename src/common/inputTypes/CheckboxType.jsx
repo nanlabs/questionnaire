@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStore } from '../../store/Store'
+import { useStore } from '../../Questionnaire/Questionnaire'
 import { setNextQuestion } from '../../utils/helpers'
 
 const Checkbox = ({ question, className }) => {

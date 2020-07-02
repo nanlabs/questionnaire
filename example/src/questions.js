@@ -11,9 +11,9 @@ export const questions = [
     id: 's1q1',
     label: 'I’m exploring cannabis because it was recommended to me by:',
     options: [
-      { label: 'Clinician', nextQuestion: 's1q1' },
-      { label: 'Fellow veteran', nextQuestion: 's1q3' },
-      { label: 'Friend', nextQuestion: 's1q3' }
+      { label: 'Clinician', nextQuestion: 's1q2' },
+      { label: 'Fellow veteran', nextQuestion: 's2q1' },
+      { label: 'Friend', nextQuestion: 's2q1' }
     ],
     type: 'radio',
     nextQuestion: 's1q3',

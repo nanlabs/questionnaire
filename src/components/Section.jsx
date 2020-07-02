@@ -1,13 +1,9 @@
 import React from 'react'
-import { useStore } from '../store/Store'
+import { useStore } from '../Questionnaire/Questionnaire'
 import { setCurrentQuestion } from '../utils/helpers'
 
-const Section = ({ label, id }) => {
+export const Section = ({ label, id }) => {
   const [{ currentQuestions, questions, Questionnaire }, dispatch] = useStore()
-
-  const isActive = (question) => {
-    return currentQuestions[0].id === question.id ? { fontWeight: 'bold' } : {}
-  }
 
   const renderQuestionsBySection = () => {
     if (questions) {
@@ -16,7 +12,6 @@ const Section = ({ label, id }) => {
         .map((question) => (
           <p
             key={question.id + question.label}
-            style={isActive(question)}
             onClick={() =>
               setCurrentQuestion(Questionnaire, question, questions, dispatch)
             }

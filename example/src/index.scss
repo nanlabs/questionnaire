@@ -15,10 +15,12 @@ code {
 
 .buttons {
   padding: 1em 2em 1em 2em;
-  background: blue;
   border-radius: 5px;
-  border-color: transparent;
-  color: white;
+  background: #e9b516;
+  box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.38),
+    -6px -6px 12px rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  border: none;
   margin: 2em 2em 0 0;
   &:hover {
     opacity: 0.7;
@@ -26,10 +28,10 @@ code {
 }
 
 .nav {
-  background: blue;
-  color: white;
   padding: 2em;
-  border-radius: 0 0 5px 0;
+  width: 30%;
+  height: 100vh;
+  border-right: solid 0.5px black;
   p {
     &:hover {
       opacity: 0.7;
@@ -39,12 +41,18 @@ code {
 
 .questionnaire-container {
   font-family: roboto;
+  color: white;
   display: flex;
+  background: #171926;
+  box-shadow: 9px 9px 16px rgba(0, 0, 0, 0.38),
+    -6px -6px 12px rgba(255, 255, 255, 0.04);
 }
 
 .question-container {
   margin-left: 2em;
   padding: 2em;
+  display: flex;
+  flex-direction: column;
 
   div > span {
     display: flex;
