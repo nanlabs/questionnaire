@@ -2,10 +2,17 @@ export const setCurrentQuestion = (
   Questionnaire,
   currentQuestion,
   questions,
-  dispatch
+  dispatch,
+  prevQuestions
 ) => {
   if (currentQuestion) {
-    setQuestionsToStore(Questionnaire, currentQuestion, questions, dispatch)
+    setQuestionsToStore(
+      Questionnaire,
+      currentQuestion,
+      questions,
+      dispatch,
+      prevQuestions
+    )
   }
 }
 
@@ -21,12 +28,13 @@ const setQuestionsToStore = (
   Questionnaire,
   currentQuestion,
   questions,
-  dispatch
+  dispatch,
+  prevQuestions
 ) => {
   const question = Questionnaire.getCurrentQuestion(currentQuestion, questions)
-  const prevQuestion = questions.find((q) => q.id === question[0].prevQuestion)
   const nextQuestion = questions.find((q) => q.id === question[0].nextQuestion)
   dispatch({ type: 'setCurrentQuestions', payload: question })
-  dispatch({ type: 'setPreviousQuestions', payload: prevQuestion })
+  prevQuestions &&
+    dispatch({ type: 'setPreviousQuestions', payload: prevQuestions[0] })
   dispatch({ type: 'setNextQuestions', payload: nextQuestion })
 }

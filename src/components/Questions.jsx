@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react'
-import { useStore } from '../store/Store'
+import { useStore } from '../Questionnaire/Questionnaire'
 import { setCurrentQuestion } from '../utils/helpers'
 
-const Questions = ({
-  questionnaire,
-  argSections,
+export const Questions = ({
+  questionnaireData,
+  argSections, //remove this arg and include it in questionnaireData
   children,
-  questionsHandler
+  className,
+  dataProvider
 }) => {
   const [{ questions, sections }, dispatch] = useStore()
+  console.log(dataProvider)
 
   // dispatch({ type: 'clear' })
   useEffect(() => {
-    dispatch({ type: 'setQuestionnaire', payload: questionsHandler })
-  }, [questionsHandler])
+    dispatch({ type: 'setQuestionnaire', payload: dataProvider })
+  }, [dataProvider])
 
   useEffect(() => {
     if ((!sections && argSections) || argSections !== sections) {
@@ -22,18 +24,18 @@ const Questions = ({
   }, [sections, dispatch, argSections])
 
   useEffect(() => {
-    if (!questions || questions !== questionnaire) {
-      dispatch({ type: 'setQuestions', payload: questionnaire })
+    if (!questions || questions !== questionnaireData) {
+      dispatch({ type: 'setQuestions', payload: questionnaireData })
       setCurrentQuestion(
-        questionsHandler,
-        questionnaire[0],
-        questionnaire,
+        dataProvider,
+        questionnaireData[0],
+        questionnaireData,
         dispatch
       )
     }
-  }, [questionnaire, questions])
+  }, [questionnaireData, questions])
 
-  return <span>{children}</span>
+  return <span className={className}>{children}</span>
 }
 
 export default Questions

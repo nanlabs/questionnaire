@@ -1,8 +1,8 @@
 import React from 'react'
 import Section from './Section'
-import { useStore } from '../store/Store'
+import { useStore } from '../Questionnaire/Questionnaire'
 
-const Nav = ({ className, children }) => {
+export const Nav = ({ className, children }) => {
   const [{ sections }] = useStore()
 
   return (

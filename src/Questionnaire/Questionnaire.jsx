@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
 import PropTypes from 'prop-types'
 import { reducer } from './Reducer'
-import Questions from '../components/Questions'
 
 export const StateContext = createContext()
 
@@ -13,31 +12,20 @@ const persist = (reducer) => {
   }
 }
 
-export const Store = ({
-  questionnaire,
-  sections,
-  children,
-  questionsHandler
-}) => {
+export const Questionnaire = ({ children }) => {
   const cache = localStorage.getItem('store')
   const initialState = cache ? JSON.parse(cache) : {}
   return (
     <StateContext.Provider value={useReducer(persist(reducer), initialState)}>
-      <Questions
-        questionnaire={questionnaire}
-        argSections={sections}
-        questionsHandler={questionsHandler}
-      >
-        {children}
-      </Questions>
+      {children}
     </StateContext.Provider>
   )
 }
-Store.defaultProps = {
+Questionnaire.defaultProps = {
   children: null
 }
 
-Store.propTypes = {
+Questionnaire.propTypes = {
   children: PropTypes.element
 }
 

@@ -17,7 +17,7 @@ export const reducer = (state, action) => {
     case 'setQuestionnaire':
       return { ...state, Questionnaire: action.payload }
     case 'clearStore':
-      return {}
+      return { state: {} }
     default:
       return state
   }

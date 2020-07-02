@@ -1,8 +1,8 @@
 import React from 'react'
-import { useStore } from '../store/Store'
+import { useStore } from '../Questionnaire/Questionnaire'
 import QuestionType from '../common/QuestionType'
 
-const Question = ({ className, children }) => {
+export const Question = ({ className, children, components }) => {
   const [{ currentQuestions }] = useStore()
   const renderQuestion = () => {
     return (
@@ -10,6 +10,7 @@ const Question = ({ className, children }) => {
       currentQuestions.length &&
       currentQuestions.map((question) => (
         <QuestionType
+          components={components}
           question={question}
           key={`${question.id}${question.label}`}
         />
@@ -24,5 +25,3 @@ const Question = ({ className, children }) => {
     </div>
   )
 }
-
-export default Question
