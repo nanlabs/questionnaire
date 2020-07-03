@@ -14,8 +14,8 @@ export const reducer = (state, action) => {
       return { ...state, questions: action.payload }
     case 'setSections':
       return { ...state, sections: action.payload }
-    case 'setQuestionnaire':
-      return { ...state, Questionnaire: action.payload }
+    case 'setDataProvider':
+      return { ...state, dataProvider: action.payload }
     case 'clearStore':
       return { state: {} }
     default:

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStore } from '../Questionnaire/Questionnaire'
+import { useStore } from '../Questionnaire/QuestionnaireContext'
 import QuestionType from '../common/QuestionType'
 
 export const Question = ({ className, children, components }) => {
