@@ -1,4 +1,5 @@
-export const questions = [
+export const data = {
+  questions: [
   {
     sectionId: 's1',
     id: 's1q1',
@@ -58,4 +59,15 @@ export const questions = [
     type: 'text',
     prevQuestion: 's2q1'
   }
+],
+sections: [
+  {
+    id: 's1',
+    label: 'First Section'
+  },
+  {
+    id: 's2',
+    label: 'Second Section'
+  }
 ]
+}

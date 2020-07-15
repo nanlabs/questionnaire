@@ -1,27 +1,31 @@
 import React from 'react'
 import { useStore } from '../../Questionnaire/QuestionnaireContext'
-import { setNextQuestion } from '../../utils/helpers'
+import { selectOption } from '../../utils/helpers'
 
-const Checkbox = ({ question, className }) => {
-  const [{ questions, dataProvider }, dispatch] = useStore()
-
+const Checkbox = ({ question, label, className }) => {
+  const [{ dataProvider }, dispatch] = useStore()
+   
+  if (!dataProvider.getLabel) return null
   return (
-    <div className={className}>
-      <h3>{question.label}</h3>
-      {question.options.map((option) => (
-        <span key={option.label}>
-          <label htmlFor={option.label} />
-          {option.label}
-          <input
-            name={option.label}
-            type={question.type}
-            onChange={() =>
-              setNextQuestion(dataProvider, option, questions, dispatch)
-            }
-          />
-        </span>
-      ))}
-    </div>
+    dataProvider.getLabel && (
+      <div className={className}>
+        <h3>{label}</h3>
+        {dataProvider.getOptions(question).map((option) => {
+          const label = option.label
+          return (
+            <span key={label}>
+              <label htmlFor={label} />
+              {label}
+              <input
+                name={label}
+                type='checkbox'
+                onChange={() => selectOption(option, dataProvider, dispatch)}
+              />
+            </span>
+          )
+        })}
+      </div>
+    )
   )
 }
 

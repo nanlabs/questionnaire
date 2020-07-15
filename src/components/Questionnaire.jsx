@@ -1,39 +1,30 @@
 import React, { useEffect } from 'react'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
-import { setCurrentQuestion } from '../utils/helpers'
 
-export const Questionnaire = ({
-  questionnaireData,
-  argSections, //remove this arg and include it in questionnaireData
-  children,
-  className,
-  dataProvider
-}) => {
+export const Questionnaire = ({ children, className, dataProvider }) => {
   const [{ questions, sections }, dispatch] = useStore()
-  console.log(dataProvider)
 
-  // dispatch({ type: 'clear' })
   useEffect(() => {
     dispatch({ type: 'setDataProvider', payload: dataProvider })
-  }, [dataProvider])
+  }, [dataProvider, dispatch])
 
   useEffect(() => {
-    if ((!sections && argSections) || argSections !== sections) {
-      dispatch({ type: 'setSections', payload: argSections })
-    }
-  }, [sections, dispatch, argSections])
+    dispatch({ type: 'setSections', payload: dataProvider.getSections() })
+  }, [sections, dispatch])
 
   useEffect(() => {
-    if (!questions || questions !== questionnaireData) {
-      dispatch({ type: 'setQuestions', payload: questionnaireData })
-      setCurrentQuestion(
-        dataProvider,
-        questionnaireData[0],
-        questionnaireData,
-        dispatch
-      )
-    }
-  }, [questionnaireData, questions])
+    dispatch({
+      type: 'setCurrentQuestions',
+      payload: dataProvider.getQuestions()[0]
+    })
+  }, [dataProvider, questions])
+
+  useEffect(() => {
+    dispatch({
+      type: 'setNextQuestions',
+      payload: dataProvider.getNextQuestion(dataProvider.getQuestions()[0])
+    })
+  }, [dataProvider, questions])
 
   return <span className={className}>{children}</span>
 }

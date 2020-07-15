@@ -1,9 +1,11 @@
 import React from 'react'
 
-const TextType = ({ className, question }) => {
+const TextType = ({ className, question, dataProvider }) => {
+ if(!dataProvider.getLabel) return null 
+
   return (
     <div className={className}>
-      <h3>{question.label}</h3>
+      <h3>{dataProvider.getLabel(question)}</h3>
       <input type='text' />
     </div>
   )
