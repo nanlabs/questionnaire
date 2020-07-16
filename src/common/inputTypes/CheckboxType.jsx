@@ -1,9 +1,9 @@
 import React from 'react'
-import { useStore } from '../../Questionnaire/Questionnaire'
+import { useStore } from '../../Questionnaire/QuestionnaireContext'
 import { setNextQuestion } from '../../utils/helpers'
 
 const Checkbox = ({ question, className }) => {
-  const [{ questions, Questionnaire }, dispatch] = useStore()
+  const [{ questions, dataProvider }, dispatch] = useStore()
 
   return (
     <div className={className}>
@@ -16,7 +16,7 @@ const Checkbox = ({ question, className }) => {
             name={option.label}
             type={question.type}
             onChange={() =>
-              setNextQuestion(Questionnaire, option, questions, dispatch)
+              setNextQuestion(dataProvider, option, questions, dispatch)
             }
           />
         </span>

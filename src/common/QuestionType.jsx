@@ -5,7 +5,7 @@ import Radio from './inputTypes/RadioType'
 import Select from './inputTypes/SelectType'
 import TextArea from './inputTypes/TextAreaType'
 import { setNextQuestion } from '../utils/helpers'
-import { useStore } from '../Questionnaire/Questionnaire'
+import { useStore } from '../Questionnaire/QuestionnaireContext'
 
 const QuestionTypes = {
   checkbox: CheckBox,
@@ -22,18 +22,18 @@ const conditionalRender = (components, question) => {
 }
 
 const Question = ({ question, className, components }) => {
-  const [{ questions, Questionnaire }, dispatch] = useStore()
-  console.log(Questionnaire)
+  const [{ questions, dataProvider }, dispatch] = useStore()
+  console.log(dataProvider)
   if (!question || (!QuestionTypes[question.type] && !components)) return null
   const TypeComponent = conditionalRender(components, question)
   return (
     <TypeComponent
-      getOptions={Questionnaire.getOptions}
+      getOptions={dataProvider.getOptions}
       question={question}
       questions={questions}
       className={className}
       setNextQuestion={(option) =>
-        setNextQuestion(Questionnaire, option, questions, dispatch)
+        setNextQuestion(dataProvider, option, questions, dispatch)
       }
     />
   )

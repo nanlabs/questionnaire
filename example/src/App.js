@@ -7,9 +7,9 @@ import { components } from './Components'
 import './index.scss'
 
 import {
-  Questionnaire,
+  QuestionnaireContext,
   Question,
-  Questions,
+  Questionnaire,
   Nav,
   NextQuestion,
   PrevQuestion
@@ -17,8 +17,8 @@ import {
 
 const App = () => {
   return (
-    <Questionnaire>
-      <Questions
+    <QuestionnaireContext>
+      <Questionnaire
         className='questionnaire-container'
         argSections={sections}
         dataProvider={questionsHandler}
@@ -31,8 +31,8 @@ const App = () => {
             <NextQuestion text='Next' className='buttons' />
           </span>
         </Question>
-      </Questions>
-    </Questionnaire>
+      </Questionnaire>
+    </QuestionnaireContext>
   )
 }
 

@@ -12,7 +12,7 @@ const persist = (reducer) => {
   }
 }
 
-export const Questionnaire = ({ children }) => {
+export const QuestionnaireContext = ({ children }) => {
   const cache = localStorage.getItem('store')
   const initialState = cache ? JSON.parse(cache) : {}
   return (
@@ -21,11 +21,11 @@ export const Questionnaire = ({ children }) => {
     </StateContext.Provider>
   )
 }
-Questionnaire.defaultProps = {
+QuestionnaireContext.defaultProps = {
   children: null
 }
 
-Questionnaire.propTypes = {
+QuestionnaireContext.propTypes = {
   children: PropTypes.element
 }
 

@@ -1,5 +1,5 @@
-export { Questionnaire } from './Questionnaire/Questionnaire'
-export { Questions } from './components/Questions'
+export { QuestionnaireContext } from './Questionnaire/QuestionnaireContext'
+export { Questionnaire } from './components/Questionnaire'
 export { Nav } from './components/Nav'
 export { Section } from './components/Section'
 export { PrevQuestion } from './components/PrevQuestion'

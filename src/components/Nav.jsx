@@ -1,6 +1,6 @@
 import React from 'react'
 import Section from './Section'
-import { useStore } from '../Questionnaire/Questionnaire'
+import { useStore } from '../Questionnaire/QuestionnaireContext'
 
 export const Nav = ({ className, children }) => {
   const [{ sections }] = useStore()

@@ -1,11 +1,11 @@
 import React from 'react'
-import { useStore } from '../Questionnaire/Questionnaire'
+import { useStore } from '../Questionnaire/QuestionnaireContext'
 import { Button } from '../common/Button'
 import { setCurrentQuestion } from '../utils/helpers'
 
 export const NextQuestion = ({ text, className }) => {
   const [
-    { questions, nextQuestions, currentQuestions, Questionnaire },
+    { questions, nextQuestions, currentQuestions, dataProvider },
     dispatch
   ] = useStore()
   return (
@@ -13,7 +13,7 @@ export const NextQuestion = ({ text, className }) => {
       className={className}
       onClick={() =>
         setCurrentQuestion(
-          Questionnaire,
+          dataProvider,
           nextQuestions,
           questions,
           dispatch,

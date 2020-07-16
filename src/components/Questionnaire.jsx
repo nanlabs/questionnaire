@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { useStore } from '../Questionnaire/Questionnaire'
+import { useStore } from '../Questionnaire/QuestionnaireContext'
 import { setCurrentQuestion } from '../utils/helpers'
 
-export const Questions = ({
+export const Questionnaire = ({
   questionnaireData,
   argSections, //remove this arg and include it in questionnaireData
   children,
@@ -14,7 +14,7 @@ export const Questions = ({
 
   // dispatch({ type: 'clear' })
   useEffect(() => {
-    dispatch({ type: 'setQuestionnaire', payload: dataProvider })
+    dispatch({ type: 'setDataProvider', payload: dataProvider })
   }, [dataProvider])
 
   useEffect(() => {
@@ -38,4 +38,4 @@ export const Questions = ({
   return <span className={className}>{children}</span>
 }
 
-export default Questions
+export default Questionnaire
