@@ -24,16 +24,36 @@ const QuestionType = ({ question, className, components }) => {
   const [{ dataProvider }] = useStore()
   if (!question && !components) return null
   if (!dataProvider.getLabel) return null
- 
-  const TypeComponent = conditionalRender(components, question)
-  return (
-    <TypeComponent
-      dataProvider={dataProvider}
-      question={question}
-      className={className}
-      label={question.label}
-    />
-  )
+
+  let TypeComponent
+
+  if (question.type === 'multiple') {
+    debugger
+    return question.fields.map((field) => {
+      TypeComponent = conditionalRender(components, field)
+
+      return (
+        <TypeComponent
+          dataProvider={dataProvider}
+          question={field}
+          className={className}
+          label={field.label}
+          key={field.label}
+        />
+      )
+    })
+  } else {
+    TypeComponent = conditionalRender(components, question)
+
+    return (
+      <TypeComponent
+        dataProvider={dataProvider}
+        question={question}
+        className={className}
+        label={question.label}
+      />
+    )
+  }
 }
 
 export default QuestionType
