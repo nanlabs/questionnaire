@@ -57,8 +57,35 @@ export const data = {
     id: 's2q2',
     label: 'What prescribed medications are you currently on?',
     type: 'text',
-    prevQuestion: 's2q1'
-  }
+    prevQuestion: 's2q1',
+    nextQuestion: 's2q3',
+
+  },
+  {
+    sectionId: 's2',
+    id: 's2q3',
+    label: 'What is the address of the company?',
+    type: 'multiple',
+    prevQuestion: 's2q2',
+    fields: [
+        {
+            label: 'Address',
+            type: 'text'
+        },
+        {
+            label: 'City',
+            type: 'text'
+        },
+        {
+            label: 'State',
+            type: 'text',
+        },
+        {
+            label: 'ZIP code',
+            type: 'text',
+        }
+    ]
+},
 ],
 sections: [
   {
