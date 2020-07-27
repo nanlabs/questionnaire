@@ -3,7 +3,7 @@ import { useStore } from '../Questionnaire/QuestionnaireContext'
 import { Button } from '../common/Button'
 import { changeQuestion } from '../utils/helpers'
 
-export const NextQuestion = ({ text, className }) => {
+export const NextQuestion = ({ text, className, component }) => {
   const [{ nextQuestions }, dispatch] = useStore()
 
   const setCurrentQuestion = () => {
@@ -11,7 +11,14 @@ export const NextQuestion = ({ text, className }) => {
   }
   if (!nextQuestions) return null
 
+  const ButtonComponent = component || Button
+
   return (
-    <Button className={className} onClick={setCurrentQuestion} text={text} />
+    <ButtonComponent
+      className={className}
+      onClick={setCurrentQuestion}
+      handleClick={setCurrentQuestion}
+      text={text}
+    />
   )
 }

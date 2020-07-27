@@ -1,5 +1,4 @@
 export const reducer = (state, action) => {
-  console.log(action, 'action')
   switch (action.type) {
     case 'setValue':
       return { ...state, value: action.payload }
