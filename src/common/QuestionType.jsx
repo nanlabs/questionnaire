@@ -5,6 +5,7 @@ import Radio from './inputTypes/RadioType'
 import Select from './inputTypes/SelectType'
 import TextArea from './inputTypes/TextAreaType'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
+import { selectOption } from '../utils/helpers'
 
 const QuestionTypes = {
   checkbox: CheckBox,
@@ -14,44 +15,51 @@ const QuestionTypes = {
   select: Select
 }
 
-const conditionalRender = (components, question) => {
-  return components && components[question.type]
-    ? components[question.type]
-    : QuestionTypes[question.type]
+const conditionalRender = (components, type) => {
+  return components && components[type] ? components[type] : QuestionTypes[type]
 }
 
-const QuestionType = ({ question, className, components }) => {
-  const [{ dataProvider }] = useStore()
+const QuestionType = ({ question, components }) => {
+  const [{ dataProvider }, dispatch] = useStore()
   if (!question && !components) return null
   if (!dataProvider.getLabel) return null
 
   let TypeComponent
 
-  if (question.type === 'multiple') {
-    debugger
-    return question.fields.map((field) => {
-      TypeComponent = conditionalRender(components, field)
+  const renderQuestion = (label, type, options) => {
+    TypeComponent = conditionalRender(components, type)
+    return (
+      <TypeComponent
+        label={label}
+        selectOption={selectOptionHandler}
+        options={options}
+      />
+    )
+  }
 
-      return (
-        <TypeComponent
-          dataProvider={dataProvider}
-          question={field}
-          className={className}
-          label={field.label}
-          key={field.label}
-        />
+  const selectOptionHandler = (event) => {
+    const label = event.target.name
+    const option = dataProvider.getOptionFromLabel(label, question)
+    if (dataProvider.getNextQuestionFromOption(option)) {
+      const nextQuesition = dataProvider.getNextQuestionFromOption(option)
+      selectOption(nextQuesition, dataProvider, dispatch)
+    }
+  }
+
+  if (question.type === 'multiple') {
+    const fields = dataProvider.getFields(question)
+    return fields.map((field) => {
+      return renderQuestion(
+        dataProvider.getFieldLabel(field),
+        dataProvider.getFieldType(field),
+        ''
       )
     })
   } else {
-    TypeComponent = conditionalRender(components, question)
-
-    return (
-      <TypeComponent
-        dataProvider={dataProvider}
-        question={question}
-        className={className}
-        label={question.label}
-      />
+    return renderQuestion(
+      dataProvider.getLabel(question),
+      dataProvider.getType(question),
+      dataProvider.getOptions(question)
     )
   }
 }

@@ -5,4 +5,6 @@ export { Section } from './components/Section'
 export { PrevQuestion } from './components/PrevQuestion'
 export { Question } from './components/Question'
 export { NextQuestion } from './components/NextQuestion'
+export { Progress } from './components/Progress'
+
 export { DataProvider } from './utils/dataProvider'

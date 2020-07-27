@@ -1,11 +1,9 @@
 import React from 'react'
 
-const TextAreaType = ({ className, question, dataProvider }) => {
-  if(!dataProvider.getLabel) return null 
-
+const TextAreaType = ({ className, label }) => {
   return (
     <div className={className}>
-      <h3>{dataProvider.getLabel(question)}</h3>
+      <h3>{label}</h3>
       <textarea rows='5' cols='50' />
     </div>
   )
