@@ -8,13 +8,17 @@ export const Nav = ({ className, component, simpleNav }) => {
 
   const handleQuestionClick = (questionId) => {
     const question = dataProvider.getQuestionById(questionId)
-    changeQuestion(question, dispatch)
+    const next = dataProvider.getNextQuestion(question)
+    const prev = dataProvider.getPrevQuestion(question)
+    changeQuestion(question, dispatch, next, prev)
   }
 
   const handleSectionClick = (sectionId) => {
     const section = dataProvider.getSectionById(sectionId)
     const question = dataProvider.getSectionFirstQuestion(section)
-    changeQuestion(question, dispatch)
+    const next = dataProvider.getNextQuestion(question)
+    const prev = dataProvider.getPrevQuestion(question)
+    changeQuestion(question, dispatch, next, prev)
   }
 
   const SectionComponent = component || Section
