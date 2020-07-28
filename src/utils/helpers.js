@@ -1,5 +1,13 @@
-export const changeQuestion = (newQ, dispatch) => {
-  dispatch({ type: 'setCurrentQuestions', payload: newQ })
+export const changeQuestion = (current, dispatch, next, prev) => {
+  dispatch({ type: 'setCurrentQuestions', payload: current })
+  dispatch({
+    type: 'setNextQuestions',
+    payload: next
+  })
+  dispatch({
+    type: 'setPrevQuestions',
+    payload: prev
+  })
 }
 
 export const selectOption = (option, dataProvider, dispatch) => {
