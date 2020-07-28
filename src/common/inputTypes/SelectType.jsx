@@ -1,31 +1,37 @@
 import React from 'react'
 import { useStore } from '../../Questionnaire/QuestionnaireContext'
-import { setNextQuestion } from '../../utils/helpers'
+import { selectOption } from '../../utils/helpers'
 
-const SelectType = ({ className }) => {
-  const [{ currentQuestion, questions, dataProvider }, dispatch] = useStore()
+const SelectType = ({ className, question }) => {
+  const [{ dataProvider }, dispatch] = useStore()
 
   const onChange = (event) => {
-    const option = currentQuestion.options.find(
-      (option) => option.label === event.target.value
-    )
-    setNextQuestions(option.nextQuestion, dispatch, questions)
+    const option = dataProvider
+      .getOptions(question)
+      .find(
+        (option) =>
+          dataProvider.getOptionLabel(option) === event.target.value
+      )
+    selectOption(option, dataProvider, dispatch)
   }
+  if(!dataProvider.getLabel) return null 
 
   return (
     <div className={className}>
-      <h3>{currentQuestion.label}</h3>
-      <select name={'options'} onChange={onChange}>
-        {currentQuestion.options.map((option) => (
-          <option
-            key={option.label}
-            value={option.label}
-            label={option.label}
-            onSelect={() =>
-              setNextQuestion(dataProvider, option, questions, dispatch)
-            }
-          />
-        ))}
+      <h3>{dataProvider.getLabel(question)}</h3>
+      <select name='options' onChange={onChange}>
+        {dataProvider.getOptions(question).map((option) => {
+          const label = dataProvider.getOptionLabel(option)
+
+          return (
+            <option
+              key={label}
+              value={label}
+              label={label}
+              onSelect={() => selectOption(option, dataProvider, dispatch)}
+            />
+          )
+        })}
       </select>
     </div>
   )

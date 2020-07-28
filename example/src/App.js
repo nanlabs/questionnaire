@@ -1,8 +1,5 @@
 import React from 'react'
-import { questions } from './questions'
-import { sections } from './sections'
-import questionsHandler from './Interface'
-import { components } from './Components'
+import { data } from './questions'
 
 import './index.scss'
 
@@ -12,20 +9,20 @@ import {
   Questionnaire,
   Nav,
   NextQuestion,
-  PrevQuestion
+  PrevQuestion,
+  DataProvider
 } from 'questionnaire'
 
+let dataProvider = DataProvider(data)
 const App = () => {
   return (
     <QuestionnaireContext>
       <Questionnaire
         className='questionnaire-container'
-        argSections={sections}
-        dataProvider={questionsHandler}
-        questionnaireData={questions}
+        dataProvider={dataProvider}
       >
         <Nav className='nav' />
-        <Question className='question-container' components={components}>
+        <Question className='question-container'>
           <span>
             <PrevQuestion text='Back' className='buttons' />
             <NextQuestion text='Next' className='buttons' />

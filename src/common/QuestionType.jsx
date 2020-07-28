@@ -4,7 +4,6 @@ import Text from './inputTypes/TextType'
 import Radio from './inputTypes/RadioType'
 import Select from './inputTypes/SelectType'
 import TextArea from './inputTypes/TextAreaType'
-import { setNextQuestion } from '../utils/helpers'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
 
 const QuestionTypes = {
@@ -21,22 +20,40 @@ const conditionalRender = (components, question) => {
     : QuestionTypes[question.type]
 }
 
-const Question = ({ question, className, components }) => {
-  const [{ questions, dataProvider }, dispatch] = useStore()
-  console.log(dataProvider)
-  if (!question || (!QuestionTypes[question.type] && !components)) return null
-  const TypeComponent = conditionalRender(components, question)
-  return (
-    <TypeComponent
-      getOptions={dataProvider.getOptions}
-      question={question}
-      questions={questions}
-      className={className}
-      setNextQuestion={(option) =>
-        setNextQuestion(dataProvider, option, questions, dispatch)
-      }
-    />
-  )
+const QuestionType = ({ question, className, components }) => {
+  const [{ dataProvider }] = useStore()
+  if (!question && !components) return null
+  if (!dataProvider.getLabel) return null
+
+  let TypeComponent
+
+  if (question.type === 'multiple') {
+    debugger
+    return question.fields.map((field) => {
+      TypeComponent = conditionalRender(components, field)
+
+      return (
+        <TypeComponent
+          dataProvider={dataProvider}
+          question={field}
+          className={className}
+          label={field.label}
+          key={field.label}
+        />
+      )
+    })
+  } else {
+    TypeComponent = conditionalRender(components, question)
+
+    return (
+      <TypeComponent
+        dataProvider={dataProvider}
+        question={question}
+        className={className}
+        label={question.label}
+      />
+    )
+  }
 }
 
-export default Question
+export default QuestionType

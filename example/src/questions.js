@@ -1,4 +1,5 @@
-export const questions = [
+export const data = {
+  questions: [
   {
     sectionId: 's1',
     id: 's1q1',
@@ -56,6 +57,44 @@ export const questions = [
     id: 's2q2',
     label: 'What prescribed medications are you currently on?',
     type: 'text',
-    prevQuestion: 's2q1'
+    prevQuestion: 's2q1',
+    nextQuestion: 's2q3',
+
+  },
+  {
+    sectionId: 's2',
+    id: 's2q3',
+    label: 'What is the address of the company?',
+    type: 'multiple',
+    prevQuestion: 's2q2',
+    fields: [
+        {
+            label: 'Address',
+            type: 'text'
+        },
+        {
+            label: 'City',
+            type: 'text'
+        },
+        {
+            label: 'State',
+            type: 'text',
+        },
+        {
+            label: 'ZIP code',
+            type: 'text',
+        }
+    ]
+},
+],
+sections: [
+  {
+    id: 's1',
+    label: 'First Section'
+  },
+  {
+    id: 's2',
+    label: 'Second Section'
   }
 ]
+}

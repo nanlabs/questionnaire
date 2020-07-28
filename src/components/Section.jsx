@@ -1,9 +1,9 @@
 import React from 'react'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
-import { setCurrentQuestion } from '../utils/helpers'
+import { changeQuestion } from '../utils/helpers'
 
 export const Section = ({ label, id }) => {
-  const [{ currentQuestions, questions, dataProvider }, dispatch] = useStore()
+  const [{ currentQuestions, questions }, dispatch] = useStore()
 
   const renderQuestionsBySection = () => {
     if (questions) {
@@ -12,9 +12,7 @@ export const Section = ({ label, id }) => {
         .map((question) => (
           <p
             key={question.id + question.label}
-            onClick={() =>
-              setCurrentQuestion(dataProvider, question, questions, dispatch)
-            }
+            onClick={() => changeQuestion(question, dispatch)}
           >
             {question.label}
           </p>
