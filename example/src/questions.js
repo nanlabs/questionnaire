@@ -9,7 +9,7 @@ export const data = {
   },
   {
     sectionId: 's1',
-    id: 's1q1',
+    id: 's1q2',
     label: 'I’m exploring cannabis because it was recommended to me by:',
     options: [
       { label: 'Clinician', nextQuestion: 's1q2' },
@@ -22,7 +22,7 @@ export const data = {
   },
   {
     sectionId: 's1',
-    id: 's1q2',
+    id: 's1q3',
     label: 'I’m struggling with:',
     options: [
       { label: 'Ability to do the things I want to do', nextQuestion: 's1q1' },
@@ -37,7 +37,7 @@ export const data = {
       { label: 'Relationship problems', nextQuestion: 's1q1' }
     ],
     nextQuestion: 's2q1',
-    prevQuestion: 's1q1',
+    prevQuestion: 's1q2',
     type: 'checkbox'
   },
   {

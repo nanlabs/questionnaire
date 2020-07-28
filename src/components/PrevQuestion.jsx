@@ -3,14 +3,21 @@ import { useStore } from '../Questionnaire/QuestionnaireContext'
 import { Button } from '../common/Button'
 import { changeQuestion } from '../utils/helpers'
 
-export const PrevQuestion = ({ text, className }) => {
+export const PrevQuestion = ({ text, className, component }) => {
   const [{ prevQuestions }, dispatch] = useStore()
 
   const setCurrentQuestion = () => {
     changeQuestion(prevQuestions, dispatch)
   }
   if (!prevQuestions) return null
+  const ButtonComponent = component || Button
+
   return (
-    <Button className={className} onClick={setCurrentQuestion} text={text} />
+    <ButtonComponent
+      className={className}
+      onClick={setCurrentQuestion}
+      handleClick={setCurrentQuestion}
+      text={text}
+    />
   )
 }

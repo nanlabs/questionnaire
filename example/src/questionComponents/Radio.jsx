@@ -65,7 +65,6 @@ export default function RadioButtonsGroup({
 
   const handleChange = (event) => {
     const option = JSON.parse(event.target.value)
-    console.log(option)
     setValue(option.label)
     setNextQuestion(option)
   }

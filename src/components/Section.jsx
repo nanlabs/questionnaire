@@ -1,29 +1,44 @@
 import React from 'react'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
-import { changeQuestion } from '../utils/helpers'
 
-export const Section = ({ label, id }) => {
-  const [{ currentQuestions, questions }, dispatch] = useStore()
+export const Section = ({
+  label,
+  id,
+  questions,
+  questionQuantity,
+  clickQuestionHandler,
+  clickSectionHandler,
+  simpleSection
+}) => {
+  const [{ dataProvider }] = useStore()
+
+  const handleQuestionClick = (event) => {
+    const questionId = event.target.dataset.key
+    clickQuestionHandler(questionId)
+  }
+
+  const handleSectionClick = () => {
+    clickSectionHandler(id)
+  }
 
   const renderQuestionsBySection = () => {
     if (questions) {
-      return questions
-        .filter((q) => q.sectionId === id)
-        .map((question) => (
-          <p
-            key={question.id + question.label}
-            onClick={() => changeQuestion(question, dispatch)}
-          >
-            {question.label}
-          </p>
-        ))
+      return questions.map((question) => (
+        <p
+          key={question.id}
+          onClick={handleQuestionClick}
+          data-key={question.id}
+        >
+          {dataProvider.getLabel(question)}
+        </p>
+      ))
     }
   }
 
   return (
     <div>
-      <h2>{label}</h2>
-      {currentQuestions && renderQuestionsBySection()}
+      <h2 onClick={handleSectionClick}>{label} - {questionQuantity}</h2>
+      {dataProvider.getLabel && !simpleSection && renderQuestionsBySection()}
     </div>
   )
 }

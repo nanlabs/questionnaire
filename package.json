@@ -8,6 +8,9 @@
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
+  "publishConfig": {
+    "@questionnaire:registry":"https://gitlab.com/api/v4/projects/19416153/packages/npm/"
+  },
   "engines": {
     "node": ">=10"
   },

@@ -1,6 +1,6 @@
 import React from 'react'
 import { data } from './questions'
-
+import { Section } from './questionComponents/Section';
 import './index.scss'
 
 import {
@@ -10,7 +10,8 @@ import {
   Nav,
   NextQuestion,
   PrevQuestion,
-  DataProvider
+  DataProvider,
+  Progress
 } from 'questionnaire'
 
 let dataProvider = DataProvider(data)
@@ -21,7 +22,8 @@ const App = () => {
         className='questionnaire-container'
         dataProvider={dataProvider}
       >
-        <Nav className='nav' />
+        <Progress></Progress>
+        <Nav className='nav' simpleSection={false} costumComponent={Section}/>
         <Question className='question-container'>
           <span>
             <PrevQuestion text='Back' className='buttons' />

@@ -2,23 +2,20 @@ import React from 'react'
 import { useStore } from '../../Questionnaire/QuestionnaireContext'
 import { selectOption } from '../../utils/helpers'
 
-const RadioTypeQuestion = ({ question, className }) => {
-  const [{ dataProvider }, dispatch] = useStore()
-  if(!dataProvider.getLabel) return null 
+const RadioTypeQuestion = ({ label, options, className, selectOption }) => {
 
   return (
     <div className={className}>
-      <h3>{dataProvider.getLabel(question)}</h3>
-      {dataProvider.getOptions(question).map((option) => {
-        const label = dataProvider.getOptionLabel(option)
+      <h3>{label}</h3>
+      {options.map((option) => {
         return (
           <span key={label}>
-            <label htmlFor={label}>{label}</label>
+            <label htmlFor={option}>{option}</label>
             <input
               type='radio'
-              name={label}
-              value={label}
-              onChange={() => selectOption(option, dataProvider, dispatch)}
+              name={option}
+              value={option}
+              onChange={selectOption}
             />
           </span>
         )
