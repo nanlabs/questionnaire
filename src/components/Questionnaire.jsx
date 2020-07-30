@@ -26,6 +26,27 @@ export const Questionnaire = ({ children, className, dataProvider }) => {
     })
   }, [dataProvider])
 
+  useEffect(() => {
+    dispatch({
+      type: 'setCurrentSection',
+      payload: dataProvider.getSections()[0]
+    })
+  }, [dataProvider])
+
+  useEffect(() => {
+    dispatch({
+      type: 'setNextQuestions',
+      payload: dataProvider.getNextQuestion(dataProvider.getQuestions()[0])
+    })
+  }, [dataProvider])
+
+  useEffect(() => {
+    dispatch({
+      type: 'getPrevQuestion',
+      payload: dataProvider.getNextQuestion(dataProvider.getQuestions()[0])
+    })
+  }, [dataProvider])
+
   return <span className={className}>{children}</span>
 }
 

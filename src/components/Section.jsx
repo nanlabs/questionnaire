@@ -8,7 +8,8 @@ export const Section = ({
   questionQuantity,
   clickQuestionHandler,
   clickSectionHandler,
-  simpleSection
+  simpleSection,
+  isActive
 }) => {
   const [{ dataProvider }] = useStore()
 
@@ -37,7 +38,7 @@ export const Section = ({
 
   return (
     <div>
-      <h2 onClick={handleSectionClick}>{label} - {questionQuantity}</h2>
+      <h2 onClick={handleSectionClick}>{`${label} ${isActive ? 'Active' : ''}`} - {questionQuantity}</h2>
       {dataProvider.getLabel && !simpleSection && renderQuestionsBySection()}
     </div>
   )
