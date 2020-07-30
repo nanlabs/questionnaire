@@ -53,7 +53,7 @@ const QuestionType = ({ question, components }) => {
       return renderQuestion(
         dataProvider.getFieldLabel(field),
         dataProvider.getFieldType(field),
-        '',
+        dataProvider.getFieldOptions(field),
         field
       )
     })
