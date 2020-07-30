@@ -26,13 +26,13 @@ const QuestionType = ({ question, components }) => {
 
   let TypeComponent
 
-  const renderQuestion = (label, type, options, question) => {
+  const renderQuestion = (label, type, field, question) => {
     TypeComponent = conditionalRender(components, type)
     return (
       <TypeComponent
         label={label}
         selectOption={selectOptionHandler}
-        options={options}
+        field={field}
         question={question}
       />
     )
@@ -53,15 +53,14 @@ const QuestionType = ({ question, components }) => {
       return renderQuestion(
         dataProvider.getFieldLabel(field),
         dataProvider.getFieldType(field),
-        '',
-        field
+        field,
+        question
       )
     })
   } else {
     return renderQuestion(
       dataProvider.getLabel(question),
       dataProvider.getType(question),
-      dataProvider.getOptions(question),
       question
     )
   }

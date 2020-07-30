@@ -1,6 +1,6 @@
 {
   "name": "@nanlabs/questionnaire",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Made with create-react-library",
   "author": "Kupuka-D",
   "license": "MIT",
@@ -9,7 +9,7 @@
   "module": "dist/index.modern.js",
   "source": "src/index.js",
   "publishConfig": {
-    "@nanlabs:registry":"https://gitlab.com/api/v4/projects/19416153/packages/npm/"
+    "@nanlabs:registry": "https://gitlab.com/api/v4/projects/19416153/packages/npm/"
   },
   "engines": {
     "node": ">=10"
