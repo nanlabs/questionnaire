@@ -7,7 +7,7 @@ export const reducer = (state, action) => {
     case 'setCurrentQuestions':
       return { ...state, currentQuestions: action.payload }
     case 'setCurrentSection':
-        return { ...state, currentSection: action.payload }
+      return { ...state, currentSection: action.payload }
     case 'setNextQuestions':
       return { ...state, nextQuestions: action.payload }
     case 'setPreviousQuestions':
