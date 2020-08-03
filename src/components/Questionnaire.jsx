@@ -42,7 +42,7 @@ export const Questionnaire = ({ children, className, dataProvider }) => {
 
   useEffect(() => {
     dispatch({
-      type: 'getPrevQuestion',
+      type: 'setPreviousQuestions',
       payload: dataProvider.getNextQuestion(dataProvider.getQuestions()[0])
     })
   }, [dataProvider])

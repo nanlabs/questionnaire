@@ -5,7 +5,7 @@ import QuestionType from '../common/QuestionType'
 export const Question = ({ className, children, components }) => {
   const [{ currentQuestions, dataProvider }] = useStore()
 
-  if (!dataProvider.getLabel) return null
+  if (!dataProvider || !dataProvider.getLabel) return null
 
   const renderQuestion = () => {
     return (
