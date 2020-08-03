@@ -22,7 +22,7 @@ const conditionalRender = (components, type) => {
 const QuestionType = ({ question, components }) => {
   const [{ dataProvider }, dispatch] = useStore()
   if (!question && !components) return null
-  if (!dataProvider.getLabel) return null
+  if (!dataProvider || !dataProvider.getLabel) return null
 
   let TypeComponent
 
