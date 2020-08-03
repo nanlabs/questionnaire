@@ -30,6 +30,7 @@ export const Nav = ({ className, component, simpleNav }) => {
   return (
     <div className={className}>
       {sections &&
+        dataProvider &&
         dataProvider.getQuestionsBySection &&
         sections.map((section) => (
           <SectionComponent

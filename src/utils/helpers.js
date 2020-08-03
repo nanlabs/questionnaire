@@ -5,7 +5,7 @@ export const changeQuestion = (current, dispatch, next, prev) => {
     payload: next
   })
   dispatch({
-    type: 'setPrevQuestions',
+    type: 'setPreviousQuestions',
     payload: prev
   })
 }

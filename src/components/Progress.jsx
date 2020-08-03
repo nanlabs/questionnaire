@@ -3,7 +3,7 @@ import { useStore } from '../Questionnaire/QuestionnaireContext'
 
 export const Progress = ({ className, Component }) => {
   const [{ dataProvider, currentQuestions }] = useStore()
-  if (!dataProvider.getQuestionPosition) return null
+  if (!dataProvider || !dataProvider.getQuestionPosition) return null
 
   const progressMade = dataProvider.getQuestionPosition(currentQuestions)
   const totalQuestions = dataProvider.getQuestions().length
