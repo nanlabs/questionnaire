@@ -7,7 +7,7 @@ export const reducer = (state, action) => {
     case 'setCurrentQuestions':
       return { ...state, currentQuestions: action.payload }
     case 'setCurrentSection':
-        return { ...state, currentSection: action.payload }
+      return { ...state, currentSection: action.payload }
     case 'setNextQuestions':
       return { ...state, nextQuestions: action.payload }
     case 'setPreviousQuestions':
@@ -18,6 +18,8 @@ export const reducer = (state, action) => {
       return { ...state, sections: action.payload }
     case 'setDataProvider':
       return { ...state, dataProvider: action.payload }
+    case 'setChangeQuestionHandler':
+      return { ...state, changeQuestionHandler: action.payload }
     case 'clearStore':
       return { state: {} }
     default:
