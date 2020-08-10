@@ -13,7 +13,10 @@ export const PrevQuestion = ({ text, className, component }) => {
     const next = dataProvider.getNextQuestion(prevQuestions)
     const prev = dataProvider.getPrevQuestion(prevQuestions)
     changeQuestion(prevQuestions, dispatch, next, prev)
-    if (changeQuestionHandler) changeQuestionHandler(prevQuestions)
+    dispatch({
+      type: 'setCurrentSection',
+      payload: dataProvider.getSectionById(prevQuestions.sectionId)
+    })
   }
   if (!prevQuestions) return null
   const ButtonComponent = component || Button
