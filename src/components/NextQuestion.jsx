@@ -4,12 +4,16 @@ import { Button } from '../common/Button'
 import { changeQuestion } from '../utils/helpers'
 
 export const NextQuestion = ({ text, className, component }) => {
-  const [{ nextQuestions, dataProvider }, dispatch] = useStore()
+  const [
+    { nextQuestions, dataProvider, changeQuestionHandler },
+    dispatch
+  ] = useStore()
 
   const setCurrentQuestion = () => {
     const next = dataProvider.getNextQuestion(nextQuestions)
     const prev = dataProvider.getPrevQuestion(nextQuestions)
     changeQuestion(nextQuestions, dispatch, next, prev)
+    if (changeQuestionHandler) changeQuestionHandler(nextQuestions)
   }
   if (!nextQuestions) return null
 

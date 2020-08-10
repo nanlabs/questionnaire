@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
 
-export const Questionnaire = ({ children, className, dataProvider }) => {
-  const [{ sections }, dispatch] = useStore()
+export const Questionnaire = ({
+  children,
+  className,
+  dataProvider,
+  changeQuestionHandler
+}) => {
+  const [, dispatch] = useStore()
 
   useEffect(() => {
     dispatch({ type: 'setDataProvider', payload: dataProvider })
@@ -46,6 +51,13 @@ export const Questionnaire = ({ children, className, dataProvider }) => {
       payload: dataProvider.getNextQuestion(dataProvider.getQuestions()[0])
     })
   }, [dataProvider])
+
+  useEffect(() => {
+    dispatch({
+      type: 'setChangeQuestionHandler',
+      payload: changeQuestionHandler
+    })
+  }, [changeQuestionHandler])
 
   return <span className={className}>{children}</span>
 }

@@ -4,13 +4,17 @@ import { useStore } from '../Questionnaire/QuestionnaireContext'
 import { changeQuestion } from '../utils/helpers'
 
 export const Nav = ({ className, component, simpleNav }) => {
-  const [{ sections, dataProvider, currentSection }, dispatch] = useStore()
+  const [
+    { sections, dataProvider, currentSection, changeQuestionHandler },
+    dispatch
+  ] = useStore()
 
   const handleQuestionClick = (questionId) => {
     const question = dataProvider.getQuestionById(questionId)
     const next = dataProvider.getNextQuestion(question)
     const prev = dataProvider.getPrevQuestion(question)
     changeQuestion(question, dispatch, next, prev)
+    if (changeQuestionHandler) changeQuestionHandler(question)
   }
 
   const handleSectionClick = (sectionId) => {
@@ -19,6 +23,7 @@ export const Nav = ({ className, component, simpleNav }) => {
     const next = dataProvider.getNextQuestion(question)
     const prev = dataProvider.getPrevQuestion(question)
     changeQuestion(question, dispatch, next, prev)
+    if (changeQuestionHandler) changeQuestionHandler(question)
 
     dispatch({
       type: 'setCurrentSection',
@@ -30,6 +35,7 @@ export const Nav = ({ className, component, simpleNav }) => {
   return (
     <div className={className}>
       {sections &&
+        dataProvider &&
         dataProvider.getQuestionsBySection &&
         sections.map((section) => (
           <SectionComponent
