@@ -15,16 +15,12 @@
 // } from 'questionnaire'
 
 // let dataProvider = DataProvider(data)
-
-// let changeQuestionHandler = (question) => {
-//     alert('hi!')
-// }
 // const App = () => {
 //   return (
 //     <QuestionnaireContext>
 //       <Questionnaire
 //         className='questionnaire-container'
-//         dataProvider={dataProvider} changeQuestionHandler={changeQuestionHandler}
+//         dataProvider={dataProvider}
 //       >
 //         <Progress></Progress>
 //         <Nav className='nav' simpleSection={false} costumComponent={Section}/>
