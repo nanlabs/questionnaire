@@ -12,6 +12,7 @@ export const NextQuestion = ({ text, className, component }) => {
   const setCurrentQuestion = () => {
     const next = dataProvider.getNextQuestion(nextQuestions)
     const prev = dataProvider.getPrevQuestion(nextQuestions)
+    changeQuestionHandler(nextQuestions)
     changeQuestion(nextQuestions, dispatch, next, prev)
     dispatch({
       type: 'setCurrentSection',
