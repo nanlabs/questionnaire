@@ -1,13 +1,27 @@
 import React, { useEffect } from 'react'
 import { useStore } from '../Questionnaire/QuestionnaireContext'
+import { changeQuestion } from '../utils/helpers'
 
 export const Questionnaire = ({
   children,
   className,
   dataProvider,
-  changeQuestionHandler
+  changeQuestionHandler,
+  reset
 }) => {
   const [, dispatch] = useStore()
+
+  const setFirstQuestion = () => {
+    const question = dataProvider.getQuestions()[0]
+    const next = dataProvider.getNextQuestion(question)
+    const prev = dataProvider.getPrevQuestion(question)
+    changeQuestion(question, dispatch, next, prev)
+    if (changeQuestionHandler) changeQuestionHandler(question)
+  }
+
+  useEffect(() => {
+    setFirstQuestion()
+  }, [reset])
 
   useEffect(() => {
     dispatch({ type: 'setDataProvider', payload: dataProvider })
