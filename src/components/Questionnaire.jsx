@@ -21,7 +21,11 @@ export const Questionnaire = ({
 
   useEffect(() => {
     setFirstQuestion()
-  }, [reset])
+    dispatch({
+      type: 'setCurrentSection',
+      payload: dataProvider.getSections()[0]
+    })
+  }, [reset, dispatch, dataProvider])
 
   useEffect(() => {
     dispatch({ type: 'setDataProvider', payload: dataProvider })
