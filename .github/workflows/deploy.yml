@@ -1,33 +1,31 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
-  publish:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v1
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          node-version: 14
-      - name: Install Node.js dependencies
-        run: npm install
-      - name: Run Tests
-        run: npm test
-      - name: Build project
-        run: npm run prepare
-      - name: Get the version
-        id: get_version
-        run: 
-          - GITHUB_TAG=${GITHUB_REF:-latest}
-          - echo ::set-output name=VERSION::${GITHUB_TAG/refs\/tags\//}
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
         with:
-          token: ${{ secrets.NPM_TOKEN }}
-          tag: ${{ steps.get_version.outputs.VERSION }}
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run prepare
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
